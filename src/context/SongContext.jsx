@@ -186,7 +186,8 @@ export const SongProvider = ({ children }) => {
   useEffect(() => {
     async function loadAllSongs() {
       try {
-        const res = await fetch("http://localhost:5000/api/songs");
+        const res = await fetch(`${API_URL}/api/songs`)
+;
         const data = await res.json();
         setAllSongs(data.songs || []);
       } catch (err) {

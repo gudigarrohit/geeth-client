@@ -6,12 +6,14 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+const API_URL = import.meta.env.VITE_API_URL ;
 
   // Fetch logged-in user on startup
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await fetch("http://localhost:5000/auth/api/me", {
+        const res = await fetch(`${API_URL}/api/me`
+, {
           credentials: "include",
         });
 
@@ -34,7 +36,7 @@ export const UserProvider = ({ children }) => {
   }, []);
 
   const logout = async () => {
-    await fetch("http://localhost:5000/auth/logout", {
+    await fetch(`${API_URL}/auth/logout`, {
       credentials: "include",
     });
     setUser(null);

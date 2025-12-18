@@ -9,13 +9,14 @@ const Navbar = () => {
 
   const [open, setOpen] = useState(false);
   const menuRef = useRef(null);
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const getInitial = (name = "") => name.charAt(0).toUpperCase();
 
   // Logout handler
   const handleLogout = async () => {
     try {
-      await fetch("http://localhost:5000/auth/logout", {
+      await fetch(`${API_URL}/auth/logout`, {
         method: "POST",
         credentials: "include",
       });
@@ -136,9 +137,9 @@ const Navbar = () => {
           // Guest / not logged in
           <div className="flex items-center gap-2.5">
             <Link to="/">
-            <span className="text-[0.89rem] text-gray-400 font-semibold hover:text-white cursor-pointer">
-              Welcome, Guest!
-            </span>
+              <span className="text-[0.89rem] text-gray-400 font-semibold hover:text-white cursor-pointer">
+                Welcome, Guest!
+              </span>
             </Link>
             <button
               onClick={() => navigate("/login")}
