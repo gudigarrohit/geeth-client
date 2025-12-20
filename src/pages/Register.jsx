@@ -20,6 +20,7 @@ const Register = () => {
   const handleChange = (e) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
+const API_URL = import.meta.env.VITE_API_URL ;
 
   const handleRegister = async (e) => {
     if (e) e.preventDefault();

@@ -23,6 +23,7 @@ const Profile = () => {
   const [banAction, setBanAction] = useState(null); // "ban" | "unban"
 
   const isAdmin = user?.role === "admin";
+  const API_URL = import.meta.env.VITE_API_URL;
 
   // Fetch current user
   useEffect(() => {

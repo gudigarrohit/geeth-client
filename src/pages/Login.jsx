@@ -35,6 +35,7 @@ const Login = () => {
   const [verifyingOtp, setVerifyingOtp] = useState(false);
   const [resettingPassword, setResettingPassword] = useState(false);
   const [otpCooldown, setOtpCooldown] = useState(0); // seconds remaining
+  const API_URL = import.meta.env.VITE_API_URL;
 
 
   const handleGoogleLogin = () => {

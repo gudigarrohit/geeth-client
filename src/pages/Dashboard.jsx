@@ -24,6 +24,8 @@ const Dashboard = () => {
   const [mode, setMode] = useState("profile"); // "profile" | "admin"
   const isAdmin = user?.role === "admin";
 
+  const API_URL = import.meta.env.VITE_API_URL ;
+
   // Initialize form from user when available
   useEffect(() => {
     if (!user) return;
