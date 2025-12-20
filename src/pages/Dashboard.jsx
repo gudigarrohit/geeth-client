@@ -31,10 +31,10 @@ const Dashboard = () => {
     setName(user.name || "");
     setBio(user.bio || "");
     if (user.avatar) {
-      setAvatarPreview(`http://localhost:5000${user.avatar}?v=${user.updatedAt}`);
+      setAvatarPreview(`${API_URL}${user.avatar}?v=${user.updatedAt}`);
     }
     if (user.banner) {
-      setBannerPreview(`http://localhost:5000${user.banner}?v=${user.updatedAt}`);
+      setBannerPreview(`${API_URL}${user.banner}?v=${user.updatedAt}`);
     }
   }, [user]);
 
@@ -65,7 +65,7 @@ const Dashboard = () => {
       if (avatarFile) formData.append("avatar", avatarFile);
       if (bannerFile) formData.append("banner", bannerFile);
 
-      const res = await fetch("http://localhost:5000/auth/api/profile", {
+      const res = await fetch(`${API_URL}/auth/api/profile`, {
         method: "PUT",
         credentials: "include",
         body: formData,
@@ -75,7 +75,7 @@ const Dashboard = () => {
 
       setSuccess("Profile updated successfully 🎉");
 
-      const refreshedRes = await fetch("http://localhost:5000/auth/api/me", {
+      const refreshedRes = await fetch(`${API_URL}/auth/api/me`, {
         credentials: "include",
       });
       const refreshedUser = await refreshedRes.json();
@@ -83,12 +83,12 @@ const Dashboard = () => {
 
       if (refreshedUser.avatar) {
         setAvatarPreview(
-          `http://localhost:5000${refreshedUser.avatar}?v=${Date.now()}`
+          `${API_URL}${refreshedUser.avatar}?v=${Date.now()}`
         );
       }
       if (refreshedUser.banner) {
         setBannerPreview(
-          `http://localhost:5000${refreshedUser.banner}?v=${Date.now()}`
+          `${API_URL}${refreshedUser.banner}?v=${Date.now()}`
         );
       }
 
@@ -121,9 +121,9 @@ const Dashboard = () => {
   }
 
   return (
-<div className="min-h-screen w-full bg-[#050505] text-white flex justify-center px-4 py-6 overflow-x-hidden">
-<div
-  className="
+    <div className="min-h-screen w-full bg-[#050505] text-white flex justify-center px-4 py-6 overflow-x-hidden">
+      <div
+        className="
     w-full max-w-5xl 
     bg-[#111111] 
     rounded-3xl 
@@ -133,7 +133,7 @@ const Dashboard = () => {
     max-h-[calc(100vh-3rem)]   /* card never taller than screen */
     flex flex-col              /* so inner content can flex/scroll */
   "
->
+      >
         {/* Banner */}
         <div className="relative h-48 bg-gradient-to-r from-purple-700 via-pink-600 to-blue-700">
           {bannerPreview && (
@@ -160,16 +160,16 @@ const Dashboard = () => {
         </div>
 
         {/* Top section: avatar + tabs */}
-{/* Top section: avatar + tabs + forms */}
-<div
-  className="
+        {/* Top section: avatar + tabs + forms */}
+        <div
+          className="
     px-6 pb-8 -mt-10 
     flex flex-col gap-6 
     overflow-y-auto          /* internal vertical scroll */
     scrollbar-thin scrollbar-thumb-[#333] scrollbar-track-transparent
     max-h-[calc(100vh-12rem)]  /* leave space for banner + padding */
   "
->
+        >
           {/* Avatar & title row */}
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
             <div className="flex items-end gap-4">
@@ -224,8 +224,8 @@ const Dashboard = () => {
                 <button
                   onClick={() => setMode("profile")}
                   className={`px-3 py-1.5 text-[0.7rem] rounded-full transition-all ${mode === "profile"
-                      ? "bg-white text-black shadow-md"
-                      : "text-white/60 hover:text-white"
+                    ? "bg-white text-black shadow-md"
+                    : "text-white/60 hover:text-white"
                     }`}
                 >
                   User Mode
@@ -234,8 +234,8 @@ const Dashboard = () => {
                   <button
                     onClick={() => setMode("admin")}
                     className={`px-3 py-1.5 text-[0.7rem] rounded-full transition-all ${mode === "admin"
-                        ? "bg-purple-500 text-white shadow-md"
-                        : "text-white/60 hover:text-white"
+                      ? "bg-purple-500 text-white shadow-md"
+                      : "text-white/60 hover:text-white"
                       }`}
                   >
                     Admin Mode
@@ -267,7 +267,7 @@ const Dashboard = () => {
 
                 <div>
                   <label className="block text-sm mb-1 text-white/70">
-                    Email 
+                    Email
                   </label>
                   <input
                     type="text"

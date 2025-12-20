@@ -38,7 +38,7 @@ const Login = () => {
 
 
   const handleGoogleLogin = () => {
-    window.location.href = "http://localhost:5000/auth/google";
+    window.location.href = `${API_URL}/auth/google`;
   };
 
   // 👇 Place the two useEffects here
@@ -81,7 +81,7 @@ const Login = () => {
     setInfo("");
 
     try {
-      const res = await fetch("http://localhost:5000/auth/login", {
+      const res = await fetch(`${API_URL}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -334,7 +334,7 @@ const Login = () => {
                 setSendingOtp(true);
 
                 try {
-                  const res = await fetch("http://localhost:5000/auth/forgot-password", {
+                  const res = await fetch(`${API_URL}/auth/forgot-password`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ email: resetEmail }),
@@ -401,7 +401,7 @@ const Login = () => {
                 setVerifyingOtp(true);
 
                 try {
-                  const res = await fetch("http://localhost:5000/auth/verify-reset-otp", {
+                  const res = await fetch(`${API_URL}/auth/verify-reset-otp`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ email: resetEmail, otp: resetOtp }),
@@ -453,7 +453,7 @@ const Login = () => {
                   setSendingOtp(true);
 
                   try {
-                    const res = await fetch("http://localhost:5000/auth/forgot-password", {
+                    const res = await fetch(`${API_URL}/auth/forgot-password`, {
                       method: "POST",
                       headers: { "Content-Type": "application/json" },
                       body: JSON.stringify({ email: resetEmail }),
@@ -496,7 +496,7 @@ const Login = () => {
                 setResettingPassword(true);
 
                 try {
-                  const res = await fetch("http://localhost:5000/auth/reset-password", {
+                  const res = await fetch(`${API_URL}/auth/reset-password`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ token: resetToken, password: newPassword }),

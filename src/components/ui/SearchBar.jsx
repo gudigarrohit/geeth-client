@@ -66,8 +66,7 @@ const SearchBar = () => {
         if (!selectedSong || selectedSong.file !== song.file) {
             setIsPlaying(true);
         }
-
-   
+     setQuery("");
     };
 
 

@@ -115,7 +115,7 @@ const Navbar = () => {
               <Link to="/profile" className="w-9 h-9 rounded-full overflow-hidden bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center text-white font-bold text-lg shadow-md">
                 {user.avatar ? (
                   <img
-                    src={`http://localhost:5000${user.avatar}?v=${user.updatedAt}`}
+                    src={`${API_URL}${user.avatar}?v=${user.updatedAt}`}
                     alt="User Avatar"
                     className="w-full h-full object-cover"
                   />

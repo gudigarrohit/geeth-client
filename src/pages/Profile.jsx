@@ -29,7 +29,7 @@ const Profile = () => {
     async function loadMe() {
       try {
         setLoadingMe(true);
-        const res = await fetch("http://localhost:5000/auth/api/me", {
+        const res = await fetch(`${API_URL}/auth/api/me`, {
           credentials: "include",
         });
         if (!res.ok) {
@@ -65,7 +65,7 @@ const Profile = () => {
         setInfo("");
 
         const res = await fetch(
-          "http://localhost:5000/auth/api/admin/users",
+          `${API_URL}/auth/api/admin/users`,
           {
             credentials: "include",
           }
@@ -104,7 +104,7 @@ const Profile = () => {
       setToast(null);
 
       const res = await fetch(
-        `http://localhost:5000/auth/api/admin/users/${confirmUser._id}/ban`,
+        `${API_URL}/auth/api/admin/users/${confirmUser._id}/ban`,
         {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
@@ -182,7 +182,7 @@ const Profile = () => {
       setToast(null);
 
       const res = await fetch(
-        `http://localhost:5000/auth/api/admin/users/${id}`,
+        `${API_URL}/auth/api/admin/users/${id}`,
         {
           method: "DELETE",
           credentials: "include",
@@ -231,7 +231,7 @@ const Profile = () => {
           <div className="relative h-48 bg-gradient-to-r from-purple-700 via-pink-600 to-blue-700">
             {user.banner && (
               <img
-                src={`http://localhost:5000${user.banner}`}
+                src={`${API_URL}${user.banner}`}
                 alt="Banner"
                 className="w-full h-full object-cover opacity-80"
               />
@@ -247,7 +247,7 @@ const Profile = () => {
                 <div className="w-24 h-24 md:w-28 md:h-28 z-30 rounded-full border-4 border-[#111111] overflow-hidden bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center text-3xl font-bold shadow-lg">
                   {user.avatar ? (
                     <img
-                      src={`http://localhost:5000${user.avatar}`}
+                      src={`${API_URL}${user.avatar}`}
                       alt="Avatar"
                       className="w-full h-full object-cover"
                     />
@@ -413,7 +413,7 @@ const Profile = () => {
                             <div className="w-9 h-9 rounded-full overflow-hidden bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center text-xs font-semibold">
                               {u.avatar ? (
                                 <img
-                                  src={`http://localhost:5000${u.avatar}`}
+                                  src={`${API_URL}${u.avatar}`}
                                   alt={u.name}
                                   className="w-full h-full object-cover"
                                 />
@@ -467,8 +467,8 @@ const Profile = () => {
                                     onClick={() => openBanModal(u, banned ? "unban" : "ban")}
                                     disabled={deletingId === u._id}
                                     className={`text-[0.7rem] px-2 py-1 rounded-md font-semibold cursor-pointer  ${banned
-                                        ? "bg-emerald-600 hover:bg-emerald-700"
-                                        : "bg-red-600/80 hover:bg-red-500"
+                                      ? "bg-emerald-600 hover:bg-emerald-700"
+                                      : "bg-red-600/80 hover:bg-red-500"
                                       } disabled:bg-gray-700 disabled:cursor-not-allowed`}
                                   >
                                     {deletingId === u._id

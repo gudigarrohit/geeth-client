@@ -27,7 +27,7 @@ const Register = () => {
     setInfo("");
 
     try {
-      const res = await fetch("http://localhost:5000/auth/register", {
+      const res = await fetch(`${API_URL}/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -50,7 +50,7 @@ const Register = () => {
     setInfo("");
 
     try {
-      const res = await fetch("http://localhost:5000/auth/verify-otp", {
+      const res = await fetch(`${API_URL}/auth/verify-otp`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
